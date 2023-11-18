@@ -170,7 +170,7 @@ app.post('/onlyColors',async(req,res)=>{
     console.log("colors : ",req.body)
     try {
 
-        const update = await Color.updateMany(
+        await Color.updateMany(
             {_id: `6557387bbfffe99f7d180bbe`},
             { $set: { 
                     buttonBackgroundColor: req.body.buttonbackgroundColor,
