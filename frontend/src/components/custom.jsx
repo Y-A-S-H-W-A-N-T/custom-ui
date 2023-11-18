@@ -123,191 +123,67 @@ const Preference = (props) => {
       });
   }
 
-  const Fire = async(e,val)=>{
-    e.stopPropagation()
-    if(val===1)
-    {
-      const { value: color } = await Swal.fire({
-        title: "Header",
-        html: `
-          <p>Text</p>
-          <input id="swal-input1" type="color" value=${userPreferences.headerLabel}>
-          <p>Background</p>
-          <input id="swal-input2" type="color" value=${userPreferences.headbg}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return [
-            document.getElementById("swal-input1").value,
-            document.getElementById("swal-input2").value
-          ]
-        }
-      })
-      if(color[0])setUserPreferences((prevPreferences) => ({...prevPreferences,headerLabel: color[0]}))
-      if(color[1])setUserPreferences((prevPreferences) => ({...prevPreferences,headbg: color[1]}))
+  const setPreferences = (property, value) => {
+    setUserPreferences((prevPreferences) => ({ ...prevPreferences, [property]: value }));
+  };
+  
+  const getColorInput = async (title, labels, properties) => {
+    const { value: color } = await Swal.fire({
+      title: title,
+      html: labels.map((label, index) => `<p>${label}</p><input id="swal-input${index + 1}" type="color" value=${userPreferences[properties[index]]}>`).join(''),
+      focusConfirm: false,
+      preConfirm: () => labels.map((_, index) => document.getElementById(`swal-input${index + 1}`).value),
+    });
+  
+    color.forEach((c, index) => {
+      if (c) setPreferences(properties[index], c);
+    });
+  };
+  
+  const Fire = async (e, val) => {
+    e.stopPropagation();
+  
+    if (val === 'header') {
+      await getColorInput("Header", ["Text", "Background"], ["headerLabel", "headbg"]);
     }
-    if(val==='para')
-    {
-      const { value: color } = await Swal.fire({
-        title: "Header",
-        html: `
-          <p>Label</p>
-          <input id="swal-input1" type="color" value=${userPreferences.label}>
-          <p>Text</p>
-          <input id="swal-input2" type="color" value=${userPreferences.paraText}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return [
-            document.getElementById("swal-input1").value,
-            document.getElementById("swal-input2").value
-          ]
-        }
-      })
-      if(color[0])setUserPreferences((prevPreferences) => ({...prevPreferences,label: color[0]}))
-      if(color[1])setUserPreferences((prevPreferences) => ({...prevPreferences,paraText: color[1]}))
+  
+    if (val === 'para') {
+      await getColorInput("Header", ["Label", "Text"], ["label", "paraText"]);
     }
-    if(val==='dropdown')
-    {
-      const { value: color } = await Swal.fire({
-        title: "DropDown",
-        html: `
-          <input id="swal-input1" type="color" value=${userPreferences.drop}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return (
-            document.getElementById("swal-input1").value
-          )
-        }
-      })
-      if(color)
-      setUserPreferences((prevPreferences) => ({...prevPreferences,drop: color}))
+  
+    if (val === 'theme') {
+      await getColorInput("Theme", ["Top Color", "Center Color", "Bottom Color"], ["theme1", "theme2", "theme3"]);
     }
-    if(val==='radio')
-    {
-      const { value: color } = await Swal.fire({
-        title: "Radio",
-        html: `
-          <input id="swal-input1" type="color" value=${userPreferences.radio}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return (
-            document.getElementById("swal-input1").value
-          )
-        }
-      })
-      if(color){
-        setUserPreferences((prevPreferences) => ({...prevPreferences,radio: color}))
-      }
-    }
-    if(val===2)
-    {
-      const { value: color } = await Swal.fire({
-        title: "Footer",
-        html: `
-          <input id="swal-input1" type="color" value=${userPreferences.footbg}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return (
-            document.getElementById("swal-input1").value
-          )
-        }
-      })
-      if(color){
-        setUserPreferences((prevPreferences) => ({...prevPreferences,footbg: color}))
-      }
-    }
-    if(val===5)
-    {
-      const { value: color } = await Swal.fire({
-        title: "Theme",
-        html: `
-          <p>Top Color</p>
-          <input id="swal-input1" type="color" value=${userPreferences.theme1}>
-          <p>Center Color</p>
-          <input id="swal-input2" type="color" value=${userPreferences.theme2}>
-          <p>Bottom Color</p>
-          <input id="swal-input3" type="color" value=${userPreferences.theme3}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return [
-            document.getElementById("swal-input1").value,
-            document.getElementById("swal-input2").value,
-            document.getElementById("swal-input3").value
-          ]
-        }
-      })
-      if(color[0])setUserPreferences((prevPreferences) => ({...prevPreferences,theme3: color[0]}))
-      if(color[1])setUserPreferences((prevPreferences) => ({...prevPreferences,theme2: color[1]}))
-      if(color[2])setUserPreferences((prevPreferences) => ({...prevPreferences,theme1: color[2]}))
-    }
-  }
 
-  const InnerFire = async(e,val)=>{
-    e.stopPropagation()
-    if(val===3)
-    {
-      const { value: color } = await Swal.fire({
-        title: "Button",
-        html: `
-          <p>Text</p>
-          <input id="swal-input1" type="color" value=${userPreferences.text}>
-          <p>Background</p>
-          <input id="swal-input2" type="color" value=${userPreferences.back}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return [
-            document.getElementById("swal-input1").value,
-            document.getElementById("swal-input2").value
-          ]
-        }
-      })
-      if(color[0]){
-        setUserPreferences((prevPreferences) => ({...prevPreferences,text: color[0]}))
-      }
-      if(color[1]){
-        setUserPreferences((prevPreferences) => ({
-          ...prevPreferences,
-          back: color[1]
-        }))
-      }
+    if (val === 'icons') {
+      await getColorInput("Icons", ["Icon Color"], ["iconColor"]);
     }
-    if(val===4)
-    {
-      const { value: color } = await Swal.fire({
-        title: "Icons",
-        html: `
-          <input id="swal-input1" type="color" value=${userPreferences.iconColor}>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-          return (
-            document.getElementById("swal-input1").value
-          )
-        }
-      })
-      if(color)
-      {
-        setUserPreferences((prevPreferences) => ({
-          ...prevPreferences,
-          iconColor: color
-        }))
-      }
+
+    if (val === 'button') {
+      await getColorInput("Button", ["Text", "Background"], ["text", "back"]);
     }
-  }
+
+    if (val === 'footer') {
+      await getColorInput("Footer", ["Footer Color"], ["footbg"]);
+    }
+
+    if (val === 'radio') {
+      await getColorInput("Radio", ["Radio Color"], ["radio"]);
+    }
+
+    if (val === 'dropdown') {
+      await getColorInput("Dropdown", ["Drop Down Color"], ["drop"]);
+    }
+
+  };
 
   return (
     <>
       {loading && <Loading/>}
-      {!loading && <div className={`p-4 sm:ml-64 font-one`} style={{background: `linear-gradient(to top,${userPreferences.theme1},${userPreferences.theme2},${userPreferences.theme3})`}} onClick={(e)=>Fire(e,5)}>
+      {!loading && <div className={`p-4 sm:ml-64 font-one`} style={{background: `linear-gradient(to top,${userPreferences.theme1},${userPreferences.theme2},${userPreferences.theme3})`}} onClick={(e)=>Fire(e,'theme')}>
           <div className="">
-            <div className={`p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700`} style={{backgroundColor: userPreferences.headbg}} onClick={(e)=>Fire(e,1)}>
-              <Custom_Header name={userPreferences.name} buttonbg={userPreferences.back} buttontext={userPreferences.text} InnerFire={InnerFire} headerLabel={userPreferences.headerLabel}/>
+            <div className={`p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700`} style={{backgroundColor: userPreferences.headbg}} onClick={(e)=>Fire(e,'header')}>
+              <Custom_Header name={userPreferences.name} buttonbg={userPreferences.back} buttontext={userPreferences.text} Fire={Fire} headerLabel={userPreferences.headerLabel}/>
             </div>
           </div>
           <Custom_Hero Fire={Fire} label={userPreferences.label} paraText={userPreferences.paraText}/>
@@ -333,8 +209,8 @@ const Preference = (props) => {
                 </p>
               </div>
             </div>
-          <div  onClick={(e)=>Fire(e,2)}>
-            <Custom_Footer footerColor={userPreferences.footbg} iconColor={userPreferences.iconColor} Fire={Fire} InnerFire={InnerFire}/>
+          <div  onClick={(e)=>Fire(e,'footer')}>
+            <Custom_Footer footerColor={userPreferences.footbg} iconColor={userPreferences.iconColor} Fire={Fire}/>
           </div>
           <div className="flex justify-center text-teal-600">
             <button 
