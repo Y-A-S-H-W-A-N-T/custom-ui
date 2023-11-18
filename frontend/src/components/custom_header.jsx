@@ -1,5 +1,6 @@
 import React from 'react'
 const Header = (props) => {
+  console.log("Custom Header")
   return (
     <><header>
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -16,6 +17,7 @@ const Header = (props) => {
         <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
         
           <button
+            onClick={(e)=>props.InnerFire(e,3)}
             className='block rounded-lg px-5 py-3 text-sm font-medium'
             style={{backgroundColor: props.buttonbg,color: props.buttontext}}
             type="button"

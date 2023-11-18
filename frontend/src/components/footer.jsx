@@ -58,7 +58,7 @@ const Footer = (props) => {
       </li>
     </ul>
 
-    <ul className="mt-12 flex justify-center gap-6 md:gap-8" onClick={(e)=>props.InnerFire(e,4)}>
+    <ul className="mt-12 flex justify-center gap-6 md:gap-8">
       <li>
         <a
           rel="noreferrer"

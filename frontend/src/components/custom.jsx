@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Radiobutton from "./Radiobutton"
 import DropDown from "./dropdown"
-import Footer from '../components/footer.jsx'
-import Hero from '../components/hero'
-import Header from "./header.jsx";
+import Custom_Footer from '../components/custom_footer.jsx'
+import Custom_Hero from './custom_hero.jsx'
+import Custom_Header from "./custom_header.jsx";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loading from "./loading";
@@ -321,10 +321,10 @@ const Preference = (props) => {
       {!loading && <div className={`p-4 sm:ml-64 font-one`} style={{background: `linear-gradient(to top,${theme1},${theme2},${theme3})`}} onClick={(e)=>Fire(e,5)}>
           <div className="">
             <div className={`p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700`} style={{backgroundColor: headbg}} onClick={(e)=>Fire(e,1)}>
-              <Header name={name} buttonbg={back} buttontext={text} InnerFire={InnerFire} headerLabel={headerLabel}/>
+              <Custom_Header name={name} buttonbg={back} buttontext={text} InnerFire={InnerFire} headerLabel={headerLabel}/>
             </div>
           </div>
-          <Hero Fire={Fire} label={label} paraText={paraText}/>
+          <Custom_Hero Fire={Fire} label={label} paraText={paraText}/>
           <div className="grid grid-cols-2 gap-4 mb-4 ">
               <div className="flex items-center flex-col justify-center rounded  h-28 ">
                 <div  onClick={(e)=>Fire(e,'radio')}>
@@ -348,7 +348,7 @@ const Preference = (props) => {
               </div>
             </div>
           <div  onClick={(e)=>Fire(e,2)}>
-            <Footer foot={footbg} iconColor={iconColor} Fire={Fire} InnerFire={InnerFire}/>
+            <Custom_Footer foot={footbg} iconColor={iconColor} Fire={Fire} InnerFire={InnerFire}/>
           </div>
           <div className="flex justify-center text-teal-600">
             <button 

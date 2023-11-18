@@ -1,8 +1,8 @@
 import Radiobutton from "./Radiobutton"
 import DropDown from "./dropdown"
 import Footer from '../components/footer.jsx'
-import Hero from '../components/hero'
-import Header from '../components/header.jsx'
+import Hero from './hero.jsx'
+import Header from './header.jsx'
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios";
