@@ -94,7 +94,6 @@ const Preference = (props) => {
     if(isAdmin)
     { 
       axios.post(`http://localhost:5000/changePref`)
-      console.log("Changed by ADMIN")
       scope = 'onlyColors'
     }
     axios

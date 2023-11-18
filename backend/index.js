@@ -167,7 +167,6 @@ const User=new mongoose.model('User', userSchema);
 const Color=new mongoose.model('Color', colorSchema);
 
 app.post('/onlyColors',async(req,res)=>{
-    console.log("colors : ",req.body)
     try {
 
         await Color.updateMany(
@@ -189,8 +188,6 @@ app.post('/onlyColors',async(req,res)=>{
                 } 
             }
         );
-        
-        console.log("Updated for all users",update);
         res.status(200).json({ msg: 'Update successful' });
     }catch (error) {
         console.error('Error:', error);
@@ -211,7 +208,6 @@ app.post('/register', async(req, res) => {
         
          const result= newUser.save()
             if(result){
-              console.log('User Saved Successfully');
               res.status(200).json({ msg: "Success" });
             }
             else {
@@ -232,7 +228,6 @@ app.post("/login",async(req,res)=>{
     console.log(result)
     if(!result)
     {
-      console.log("Not registered")
       res.status(404).json({msg:"Not registered"})
     }
     else
@@ -251,7 +246,7 @@ app.post("/login",async(req,res)=>{
 
 app.post('/colors', async (req, res) => {
     try {
-        const update = await User.updateMany(
+        await User.updateMany(
             {_id: req.body.userId},
             { $set: { 
                     buttonBackgroundColor: req.body.buttonbackgroundColor,
@@ -271,7 +266,6 @@ app.post('/colors', async (req, res) => {
                 } 
             }
         );
-        console.log('updated colors for single user - ',update);
         res.status(200).json({ msg: 'Update successful' });
     } catch (error) {
         console.error('Error:', error);
@@ -282,7 +276,7 @@ app.post('/colors', async (req, res) => {
 
 app.post('/changeAll', async (req, res) => {
     try {
-        const update = await User.updateMany(
+        await User.updateMany(
             {},
             { $set: { 
                     buttonBackgroundColor: req.body.buttonbackgroundColor,
@@ -301,8 +295,6 @@ app.post('/changeAll', async (req, res) => {
                 } 
             }
         );
-        
-        console.log('updated');
         res.status(200).json({ msg: 'Update successful' });
     } catch (error) {
         console.error('Error:', error);
@@ -315,19 +307,17 @@ app.get('/user/:id',async(req,res)=>{
     const userId = req.params.id
     const result=await User.findOne({_id:userId});
     res.json(result).status(200)
-    console.log("User data - ",result)
 });
 
 app.get('/onlyColors',async(req,res)=>{
     const userId = `6557387bbfffe99f7d180bbe`
     const result=await Color.findOne({_id:userId});
     res.json(result).status(200)
-    console.log("From only colors : ",result)
 });
 
 app.post('/changePref',async(req,res)=>{
     try{
-        const update = await User.updateMany(
+        await User.updateMany(
             {},
             { $set: { 
                     pref: false
