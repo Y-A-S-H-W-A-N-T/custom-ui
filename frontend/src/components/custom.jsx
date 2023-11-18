@@ -348,7 +348,7 @@ const Preference = (props) => {
               </div>
             </div>
           <div  onClick={(e)=>Fire(e,2)}>
-            <Custom_Footer foot={footbg} iconColor={iconColor} Fire={Fire} InnerFire={InnerFire}/>
+            <Custom_Footer footerColor={footbg} iconColor={iconColor} Fire={Fire} InnerFire={InnerFire}/>
           </div>
           <div className="flex justify-center text-teal-600">
             <button 
