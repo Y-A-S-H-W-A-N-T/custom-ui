@@ -1,7 +1,7 @@
 
 
 const Label = (props) => {
-    var a =props.name
+    const a =props.name
   return (
     <div>
       <label className="flex flex-row ml-1">
