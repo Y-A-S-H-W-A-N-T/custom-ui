@@ -34,20 +34,12 @@ const Login = () => {
         }
       })
       .catch(err=>{
-        if(err.response.status==404)
+        if(err.response.status==404 || err.response.status===400)
         {
           Swal.fire({
             icon: 'error',
             title: 'OOPS!!!🫨',
             text: 'WRONG CREDENTIALS!',
-          })
-        }
-        else if(err.response.status==400)
-        {
-          Swal.fire({
-            icon: 'error',
-            title: '☹️',
-            text: 'WRONG PASSWORD!',
           })
         }
       })
