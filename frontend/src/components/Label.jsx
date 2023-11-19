@@ -1,7 +1,6 @@
 
 
-const Label = (props) => {
-    const a =props.name
+const Label = () => {
   return (
     <div>
       <label className="flex flex-row ml-1">

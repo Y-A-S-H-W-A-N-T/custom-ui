@@ -80,12 +80,6 @@ describe('Express App', () => {
     expect(response.body.msg).toBe('Update successful');
   }, 10000); // Set a timeout of 10 seconds
 
-  // it('GET /user/:id should return user data', async () => {
-  //   const response = await request.get(`/user/${userId}`);
-  //   expect(response.status).toBe(200);
-  //   // Add your expectations for user data here
-  // }, 10000); // Set a timeout of 10 seconds
-
   afterAll(async () => {
   
     if (userId) {
