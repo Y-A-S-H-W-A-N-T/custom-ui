@@ -9,7 +9,6 @@ const port = 5000
 app.use(express.json())
 app.use(cors())
 
-
 mongoose.connect(`mongodb+srv://UIPersonalization:${process.env.MONGOOSE_PASSWORD}@cluster0.absh9oa.mongodb.net/?retryWrites=true&w=majority`,{ useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
     console.log('connected successful')}).catch((err)=>{
         console.log(err)
