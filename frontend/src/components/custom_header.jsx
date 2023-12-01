@@ -17,6 +17,7 @@ const Header = (props) => {
         
           <button
             onClick={(e)=>props.Fire(e,'button')}
+            onKeyDown={ () => {}}
             className='block rounded-lg px-5 py-3 text-sm font-medium'
             style={{backgroundColor: props.buttonbg,color: props.buttontext}}
             type="button"
