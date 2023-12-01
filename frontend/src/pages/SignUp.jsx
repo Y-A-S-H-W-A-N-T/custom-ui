@@ -11,7 +11,7 @@ const SignUp = () => {
   const navigate=useNavigate();
 
   const Register = ()=>{
-    const regex = /^(vtu\d{5}@veltech\.edu\.in|[^.]+@(gmail\.com|yahoo\.com|hotmail\.com))$/
+    const regex = /^(vtu\d{5}@veltech\.edu\.in|[^.]+@(gmail\.com|yahoo\.com|hotmail\.com|cognizant\.com))$/
     const regex2 = /^(?!.*(\w)\1{2,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{6,}$/
     if(username==='' || email==='' || password==='')
     {

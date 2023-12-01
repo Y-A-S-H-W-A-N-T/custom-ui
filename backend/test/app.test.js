@@ -59,7 +59,7 @@ describe('Express App', () => {
       email: 'color@gmail.com',
       password: process.env.WRONG_PASSWORD,
     });
-    expect(response.status).toBe(400); // Expect a 404 status for wrong password
+    expect(response.status).toBe(404); // Expect a 404 status for wrong password
     expect(response.body.msg).toBe('Wrong Password');
   }, 10000); // Set a timeout of 10 seconds
 

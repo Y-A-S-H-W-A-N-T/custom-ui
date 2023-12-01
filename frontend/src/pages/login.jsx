@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useUser } from "./demoAccount";
 import Swal from 'sweetalert2'
 
 const Login = () => {
   
   const navigate = useNavigate(); 
+  const { login } = useUser();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
@@ -20,6 +22,7 @@ const Login = () => {
         if(res.status===200)
         {
           const userData = res.data;
+          login(userData);
           Swal.fire({
             position: 'top-end',
             icon: 'success',

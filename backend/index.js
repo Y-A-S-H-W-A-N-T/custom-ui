@@ -167,7 +167,7 @@ const Color=new mongoose.model('Color', colorSchema);
 app.post('/onlyColors',async(req,res)=>{
     try {
 
-        await Color.updateMany(
+        const update = await Color.updateMany(
             {_id: `6557387bbfffe99f7d180bbe`},
             { $set: { 
                     buttonBackgroundColor: req.body.buttonbackgroundColor,
@@ -186,6 +186,7 @@ app.post('/onlyColors',async(req,res)=>{
                 } 
             }
         );
+        console.log("Admin changed the colors : ",update)
         res.status(200).json({ msg: 'Update successful' });
     }catch (error) {
         console.error('Error:', error);
@@ -223,7 +224,6 @@ app.post('/register', async(req, res) => {
 app.post("/login",async(req,res)=>{
     console.log("This is the login:",req.body)
     const result=await User.findOne({email:req.body.email});
-    console.log(result)
     if(!result)
     {
       res.status(404).json({msg:"Not registered"})
@@ -235,7 +235,8 @@ app.post("/login",async(req,res)=>{
             res.status(200).json({id:result._id})
         }
         else
-        {
+        {   
+            console.log("Not Registered with this details",req.body)
             res.status(400).json({msg:"Wrong Password"})
         }
 
@@ -244,7 +245,7 @@ app.post("/login",async(req,res)=>{
 
 app.post('/colors', async (req, res) => {
     try {
-        await User.updateMany(
+        const update = await User.updateMany(
             {_id: req.body.userId},
             { $set: { 
                     buttonBackgroundColor: req.body.buttonbackgroundColor,
@@ -264,6 +265,7 @@ app.post('/colors', async (req, res) => {
                 } 
             }
         );
+        console.log("User changed his colors : ",update)
         res.status(200).json({ msg: 'Update successful' });
     } catch (error) {
         console.error('Error:', error);
@@ -304,12 +306,14 @@ app.post('/changeAll', async (req, res) => {
 app.get('/user/:id',async(req,res)=>{
     const userId = req.params.id
     const result=await User.findOne({_id:userId});
+    console.log("+++++++++++++++++USER COLORS :",result)
     res.json(result).status(200)
 });
 
 app.get('/onlyColors',async(req,res)=>{
     const userId = `6557387bbfffe99f7d180bbe`
     const result=await Color.findOne({_id:userId});
+    console.log("+++++++++++++++++ADMIN COLORS :",result)
     res.json(result).status(200)
 });
 

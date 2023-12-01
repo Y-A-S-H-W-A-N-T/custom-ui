@@ -4,6 +4,7 @@ import SignUp from './pages/SignUp.jsx';
 import Login  from './pages/login.jsx';
 import Dashboard from '../src/pages/Dash.jsx';
 import Nopage from './pages/nopage.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

@@ -43,7 +43,7 @@ const HeroPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  },[]);
 
   const setColors = (val) => {
     const endpoint = val ? `http://localhost:5000/user/${id}` : `http://localhost:5000/onlyColors`;
