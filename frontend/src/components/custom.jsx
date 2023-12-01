@@ -179,16 +179,16 @@ const Preference = (props) => {
   return (
     <>
       {loading && <Loading/>}
-      {!loading && <div className={`p-4 sm:ml-64 font-one`} style={{background: `linear-gradient(to top,${userPreferences.theme1},${userPreferences.theme2},${userPreferences.theme3})`}} onClick={(e)=>Fire(e,'theme')}  onKeyDown={ () => {}} >
+      {!loading && <div className={`p-4 sm:ml-64 font-one`} style={{background: `linear-gradient(to top,${userPreferences.theme1},${userPreferences.theme2},${userPreferences.theme3})`}} onClick={(e)=>Fire(e,'theme')}  onKeyDown={ () => {}} role="button" >
           <div className="">
-            <div className={`p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700`} style={{backgroundColor: userPreferences.headbg}} onClick={(e)=>Fire(e,'header')} onKeyDown={ () => {}} >
+            <div className={`p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700`} style={{backgroundColor: userPreferences.headbg}} onClick={(e)=>Fire(e,'header')} onKeyDown={ () => {}} role="button" >
               <Custom_Header name={userPreferences.name} buttonbg={userPreferences.back} buttontext={userPreferences.text} Fire={Fire} headerLabel={userPreferences.headerLabel}/>
             </div>
           </div>
           <Custom_Hero Fire={Fire} label={userPreferences.label} paraText={userPreferences.paraText}/>
           <div className="grid grid-cols-2 gap-4 mb-4 ">
               <div className="flex items-center flex-col justify-center rounded  h-28 ">
-                <div  onClick={(e)=>Fire(e,'radio')} onKeyDown={ () => {}} >
+                <div  onClick={(e)=>Fire(e,'radio')} onKeyDown={ () => {}} role="button" >
                   <p className="lg:text-2xl flex items-center flex-col justify-center">Gender</p>
                   <p className=" flex font-two lg:flex-row lg:text-sm sm:text-xs flex-col sm:text-clip sm:overflow-auto  text-black ">
                     <Radiobutton name="Red" radio={userPreferences.radio}/>
@@ -197,7 +197,7 @@ const Preference = (props) => {
               </div>
               <div className="flex flex-col items-center justify-center rounded  h-28 ">
                 <p className="lg:text-2xl">Country</p>
-                <p className="lg:text-sm font-two text-black  flex flex-col "  onClick={(e)=>Fire(e,'dropdown')} onKeyDown={ () => {}} >
+                <p className="lg:text-sm font-two text-black  flex flex-col "  onClick={(e)=>Fire(e,'dropdown')} onKeyDown={ () => {}} role="button" >
                   <DropDown
                     name="Choose your country"
                     option1="India"
@@ -208,13 +208,14 @@ const Preference = (props) => {
                 </p>
               </div>
             </div>
-          <div  onClick={(e)=>Fire(e,'footer')} onKeyDown={ () => {}} >
+          <div  onClick={(e)=>Fire(e,'footer')} onKeyDown={ () => {}} role="button" >
             <Custom_Footer footerColor={userPreferences.footbg} iconColor={userPreferences.iconColor} Fire={Fire}/>
           </div>
           <div className="flex justify-center text-teal-600">
             <button 
               onClick={(e)=>ApplyChanges(e)}
               onKeyDown={ () => {}} 
+              role="button"
               className="mt-8 rounded bg-indigo-600 px-12 py-3 text-sm text-white transition hover:bg-indigo-700"
             >Apply Changes</button>
           </div>
