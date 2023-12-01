@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useUser } from "./demoAccount";
 import Swal from 'sweetalert2'
 
 const Login = () => {
   
   const navigate = useNavigate(); 
-  const { login } = useUser();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
@@ -21,8 +19,6 @@ const Login = () => {
       .then((res) => {
         if(res.status===200)
         {
-          const userData = res.data;
-          login(userData);
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -48,8 +44,6 @@ const Login = () => {
   return (
     <div className="bg-gradient-to-t from-white via-purple-100 to-indigo-200 flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-      
-       {/* logo */}
        <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -1,5 +1,7 @@
 const express = require('express')
-const cors = require('cors');
+const cors = require('cors')
+const helmet = require('helmet')
+
 const mongoose=require('mongoose')
 require('dotenv').config()
 
@@ -7,7 +9,19 @@ const app = express()
 const port = 5000
 
 app.use(express.json())
-app.use(cors())
+app.use(helmet())
+app.use(helmet.hidePoweredBy());
+
+
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 
 mongoose.connect(`mongodb+srv://UIPersonalization:${process.env.MONGOOSE_PASSWORD}@cluster0.absh9oa.mongodb.net/?retryWrites=true&w=majority`,{ useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
     console.log('connected successful')}).catch((err)=>{
