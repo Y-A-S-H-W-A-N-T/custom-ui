@@ -15,7 +15,7 @@ const Hero = (props) => {
           />
         </div>
   
-        <div className="lg:py-24" onClick={(e)=>props.Fire(e,'para')}  onKeyDown={ () => {}} role="button" >
+        <div className="lg:py-24" onClick={(e)=>props.Fire(e,'para')}  onMouseOver={ () => {}} >
           <h2 className="text-3xl font-bold sm:text-4xl" style={{color: props.label}}>UI Personalization</h2>
   
           <p className="mt-4" style={{color: props.paraText}}>
