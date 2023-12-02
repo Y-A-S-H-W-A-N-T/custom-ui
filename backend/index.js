@@ -288,34 +288,6 @@ app.post('/colors', async (req, res) => {
 });
 
 
-app.post('/changeAll', async (req, res) => {
-    try {
-        await User.updateMany(
-            {},
-            { $set: { 
-                    buttonBackgroundColor: req.body.buttonbackgroundColor,
-                    textColor: req.body.textColor, 
-                    headerBackgroundColor:req.body.headerBackgroundColor,
-                    footerBackgroundColor:req.body.footerBackgroundColor,
-                    radioButtonColor:req.body.radioButtonColor,
-                    dropDownButtonColor:req.body.dropDownButtonColor,
-                    themeColor1:req.body.themeColor1,
-                    themeColor2:req.body.themeColor2,
-                    themeColor3:req.body.themeColor3,
-                    iconColor:req.body.iconColor,
-                    headerLabel: req.body.headerLabel,
-                    label: req.body.label,
-                    paraText: req.body.paraText,
-                } 
-            }
-        );
-        res.status(200).json({ msg: 'Update successful' });
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ msg: 'Internal server error' });
-    }
-});
-
 
 app.get('/user/:id',async(req,res)=>{
     const userId = req.params.id
